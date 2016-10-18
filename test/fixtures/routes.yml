@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mta_id: MyString
+  short_name: MyString
+  long_name: MyString
+  desc: MyText
+  color: MyString
+  text_color: 
+
+two:
+  mta_id: MyString
+  short_name: MyString
+  long_name: MyString
+  desc: MyText
+  color: MyString
+  text_color: 

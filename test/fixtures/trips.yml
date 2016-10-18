@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  route_id: MyString
+  direction_id: 1
+  shape_id: MyString
+
+two:
+  route_id: MyString
+  direction_id: 1
+  shape_id: MyString

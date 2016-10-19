@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(version: 20161018003746) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "routes", force: :cascade do |t|
-    t.string   "mta_id"
+  create_table "routes", id: false, force: :cascade do |t|
+    t.string   "mta_id",     null: false
     t.string   "short_name"
     t.string   "long_name"
     t.text     "desc"
@@ -27,41 +27,38 @@ ActiveRecord::Schema.define(version: 20161018003746) do
     t.index ["mta_id"], name: "index_routes_on_mta_id", unique: true, using: :btree
   end
 
-  create_table "stop_times", force: :cascade do |t|
-    t.integer  "trip_id"
+  create_table "stop_times", id: false, force: :cascade do |t|
+    t.string   "trip_id",        null: false
+    t.string   "track_id",       null: false
     t.time     "arrival_time"
     t.time     "departure_time"
-    t.integer  "stop_id"
     t.integer  "stop_sequence"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.index ["stop_id"], name: "index_stop_times_on_stop_id", using: :btree
+    t.index ["track_id"], name: "index_stop_times_on_track_id", using: :btree
     t.index ["trip_id"], name: "index_stop_times_on_trip_id", using: :btree
   end
 
-  create_table "stops", force: :cascade do |t|
-    t.string   "mta_id"
+  create_table "stops", id: false, force: :cascade do |t|
+    t.string   "mta_id",            null: false
+    t.string   "type",              null: false
     t.string   "name"
     t.float    "lat"
     t.float    "lon"
-    t.integer  "parent_station_id"
+    t.string   "parent_station_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.index ["mta_id"], name: "index_stops_on_mta_id", unique: true, using: :btree
   end
 
-  create_table "trips", force: :cascade do |t|
-    t.integer  "route_id"
-    t.string   "mta_id"
+  create_table "trips", id: false, force: :cascade do |t|
+    t.string   "mta_id",       null: false
+    t.string   "route_id"
     t.integer  "direction_id"
     t.string   "shape_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["mta_id"], name: "index_trips_on_mta_id", unique: true, using: :btree
-    t.index ["route_id"], name: "index_trips_on_route_id", using: :btree
   end
 
-  add_foreign_key "stop_times", "stops"
-  add_foreign_key "stop_times", "trips"
-  add_foreign_key "trips", "routes"
 end

@@ -1,7 +1,7 @@
 class CreateRoutes < ActiveRecord::Migration[5.0]
   def change
-    create_table :routes do |t|
-      t.string :mta_id
+    create_table :routes, id: false do |t|
+      t.string :mta_id, null: false
       t.string :short_name
       t.string :long_name
       t.text :desc

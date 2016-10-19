@@ -1,8 +1,8 @@
 class CreateTrips < ActiveRecord::Migration[5.0]
   def change
-    create_table :trips do |t|
-      t.references :route, foreign_key: true
-      t.string :mta_id
+    create_table :trips, id: false do |t|
+      t.string :mta_id, null: false
+      t.string :route_id, foreign_key: true
       t.integer :direction_id
       t.string :shape_id
 
